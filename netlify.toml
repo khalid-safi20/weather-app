@@ -1,6 +1,6 @@
 [build]
-  command = ""  # no build command because it's a static site
-  publish = "." # deploy from root folder
+  command = ""
+  publish = "."
 
 [context.production.environment]
   OPENWEATHER_API_KEY = "5c08a887f729315ff422e81a471ea0c3"
