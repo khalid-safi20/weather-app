@@ -1,0 +1,410 @@
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Custom styles for loading spinner */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 0.3s ease;
+}
+
+/* Custom glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode glassmorphism */
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Country tab styles */
+.country-tab.active {
+  background: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+}
+
+/* Weekly forecast styles */
+.weekly-forecast {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.weekly-forecast .day {
+  text-align: center;
+  padding: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.weekly-forecast .day:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.weekly-forecast .day-name {
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.weekly-forecast .day-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  transition: transform 0.2s ease;
+}
+
+.weekly-forecast .day:hover .day-icon {
+  transform: scale(1.1);
+}
+
+.weekly-forecast .day-temp {
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* Footer styles */
+footer {
+  width: 100%;
+}
+
+footer .glass {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Updated name styling for better visibility in both modes */
+footer h2 {
+  color: #ffffff; 
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.light-mode footer h2 {
+  color: #1e293b; 
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8); 
+}
+
+/* Decorative line under name */
+footer .name-underline {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  margin: 0 auto 1rem;
+  border-radius: 2px;
+}
+
+footer .fab, footer .fas {
+  transition: transform 0.2s ease;
+}
+
+footer .fab:hover, footer .fas:hover {
+  transform: scale(1.2);
+}
+
+/* Dark mode text colors */
+.dark {
+  color: #ffffff; 
+}
+
+.dark h1, 
+.dark h2, 
+.dark h3, 
+.dark h4, 
+.dark h5, 
+.dark h6 {
+  color: #ffffff;
+}
+
+.dark p,
+.dark span,
+.dark div:not(.glass) {
+  color: #e2e8f0; 
+}
+
+.dark .glass {
+  color: #ffffff; 
+}
+
+.dark .glass p,
+.dark .glass span {
+  color: #ffffff;
+}
+
+.dark input {
+  color: #1e293b; 
+}
+
+.dark .text-white\/80 {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .text-white\/70 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.dark .text-white\/90 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .text-yellow-300 {
+  color: #fde047;
+}
+
+.dark .text-red-400 {
+  color: #f87171;
+}
+
+/* Light mode text colors */
+.light-mode {
+  color: #1e293b; 
+}
+
+.light-mode h1, 
+.light-mode h2, 
+.light-mode h3, 
+.light-mode h4, 
+.light-mode h5, 
+.light-mode h6 {
+  color: #1e293b;
+}
+
+.light-mode p,
+.light-mode span,
+.light-mode div:not(.glass) {
+  color: #334155; 
+}
+
+.light-mode .glass {
+  color: #1e293b; 
+}
+
+.light-mode .glass p,
+.light-mode .glass span {
+  color: #1e293b;
+}
+
+.light-mode input {
+  color: #1e293b; 
+}
+
+.light-mode .text-white\/80 {
+  color: rgba(30, 41, 59, 0.8);
+}
+
+.light-mode .text-white\/70 {
+  color: rgba(30, 41, 59, 0.7);
+}
+
+.light-mode .text-white\/90 {
+  color: rgba(30, 41, 59, 0.9);
+}
+
+.light-mode .text-yellow-300 {
+  color: #ca8a04;
+}
+
+.light-mode .text-red-400 {
+  color: #dc2626;
+}
+
+/* Button text color fix for light mode */
+#unitToggle {
+  color: white !important; 
+}
+
+/* Button styles */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Input field styles */
+input {
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+/* Loading container improvements */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Progress bar container */
+.progress-container {
+  width: 100%;
+  max-width: 300px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  height: 0.5rem;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.light-mode .progress-container {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* City card improvements */
+.city-card {
+  transition: all 0.3s ease;
+}
+
+.city-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Error message styles */
+.error-message {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Retry button animation */
+.retry-button {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .weekly-forecast {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  footer h2 {
+    font-size: 1.5rem;
+  }
+  
+  footer .glass {
+    padding: 1rem;
+  }
+  
+  footer .name-underline {
+    width: 40px;
+  }
+  
+  .progress-container {
+    max-width: 200px;
+  }
+}
+
+/* Medium screen adjustments */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .weekly-forecast {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Large screen adjustments */
+@media (min-width: 1025px) {
+  .weekly-forecast {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+/* Performance optimization: Reduce paint on scroll */
+.city-card {
+  will-change: transform;
+}
+
+/* Loading spinner optimization */
+.animate-spin {
+  will-change: transform;
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for better accessibility */
+button:focus,
+input:focus,
+a:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass {
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .dark .glass {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
