@@ -1,6 +1,6 @@
 [build]
-  command = "echo 'No build required'"
-  publish = "."
+  command = ""  # no build command because it's a static site
+  publish = "." # deploy from root folder
 
 [context.production.environment]
   OPENWEATHER_API_KEY = "5c08a887f729315ff422e81a471ea0c3"
