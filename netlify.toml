@@ -1,11 +1,10 @@
+
 [build]
-  # This is just a placeholder - no special build command needed
   command = "echo 'No build required'"
+  publish = "weather-app/"
 
 [context.production.environment]
-  # Set your API key for production
   OPENWEATHER_API_KEY = "5c08a887f729315ff422e81a471ea0c3"
 
 [context.deploy-preview.environment]
-  # Set your API key for deploy previews
   OPENWEATHER_API_KEY = "5c08a887f729315ff422e81a471ea0c3"
