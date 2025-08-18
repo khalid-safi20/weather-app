@@ -1,8 +1,4 @@
-// const apiKey = "5c08a887f729315ff422e81a471ea0c3"; 
-
-// This will use the environment variable in Netlify, but fall back to the hardcoded key for local development
-const apiKey = process.env.OPENWEATHER_API_KEY || "5c08a887f729315ff422e81a471ea0c3";
-
+const apiKey = "5c08a887f729315ff422e81a471ea0c3"; 
 const citiesContainer = document.getElementById("citiesContainer");
 const searchBtn = document.getElementById("searchBtn");
 const cityInput = document.getElementById("cityInput");
