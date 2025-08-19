@@ -1,174 +1,96 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App </title>
-    <link rel="shortcut icon" href="weather-app-icon.png" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script>
-      // Enable dark mode classes
-      tailwind.config = {
-        darkMode: "class",
-      };
-    </script>
-  </head>
-  <body
-    class="bg-gradient-to-br from-blue-400 to-indigo-600 dark:from-gray-900 dark:to-gray-800 min-h-screen flex flex-col p-4 transition-colors duration-500"
-  >
-    <div class="max-w-7xl mx-auto flex-grow">
-      <header class="text-center py-6">
-        <h1 class="text-3xl font-bold text-white mb-2">🌦 Weather App</h1>
-        <p class="text-white/80">
-          Weather for major cities in Afghanistan, Pakistan, India, and Saudi
-          Arabia
-        </p>
-      </header>
-
-      <!-- Controls Container -->
-      <div class="flex flex-col items-center gap-6 mb-6">
-        <!-- Search Section -->
-        <div class="flex gap-2 w-full max-w-md">
-          <input
-            id="cityInput"
-            type="text"
-            placeholder="Search city..."
-            class="flex-1 p-2 rounded-lg text-black transition-all focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          />
-          <button
-            id="searchBtn"
-            class="bg-amber-500 hover:bg-amber-600 text-gray-100 px-4 py-2 rounded-lg transition-colors shadow-md"
-          >
-            Search
-          </button>
-
-        </div>
-
-        <!-- Buttons Section -->
-        <div class="flex gap-2 flex-wrap justify-center">
-          <button
-            id="unitToggle"
-            class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded-lg transition-colors text-white"
-          >
-            Switch to °F
-          </button>
-          <button
-            id="refreshBtn"
-            class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded-lg transition-colors"
-          >
-            🔄 Refresh
-          </button>
-          <button
-            id="themeToggle"
-            class="bg-yellow-400 hover:bg-yellow-500 text-black px-3 py-1 rounded-lg transition-colors"
-          >
-            🌙 Toggle Mode
-          </button>
-        </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App - South Asia & Middle East</title>
+  <link rel="shortcut icon" href="weather-app-icon.png" type="image/png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    // Enable dark mode classes
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+</head>
+<body class="bg-gradient-to-br from-blue-400 to-indigo-600 dark:from-gray-900 dark:to-gray-800 min-h-screen flex flex-col p-4 transition-colors duration-500">
+  <div class="max-w-7xl mx-auto flex-grow">
+    <header class="text-center py-6">
+      <h1 class="text-3xl font-bold text-white mb-2">🌦 Weather Peek</h1>
+      <p class="text-white/80">Weather for major cities in Afghanistan, Pakistan, India, and Saudi Arabia</p>
+    </header>
+    
+    <!-- Controls Container -->
+    <div class="flex flex-col items-center gap-6 mb-6">
+      <!-- Search Section -->
+      <div class="flex gap-2 w-full max-w-md">
+        <input id="cityInput" type="text" placeholder="Search city..."
+          class="flex-1 p-2 rounded-lg text-black transition-all focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+        <button id="searchBtn" class="bg-amber-500 hover:bg-amber-600 text-gray-100 px-4 py-2 rounded-lg transition-colors shadow-md">Search</button>
       </div>
-
-      <!-- Country Tabs -->
-      <div class="flex flex-wrap justify-center gap-2 mb-6">
-        <button
-          class="country-tab active px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
-          data-country="all"
-        >
-          All Countries
-        </button>
-        <button
-          class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
-          data-country="AF"
-        >
-          Afghanistan
-        </button>
-        <button
-          class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
-          data-country="PK"
-        >
-          Pakistan
-        </button>
-        <button
-          class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
-          data-country="IN"
-        >
-          India
-        </button>
-        <button
-          class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors"
-          data-country="SA"
-        >
-          Saudi Arabia
-        </button>
+      
+      <!-- Buttons Section -->
+      <div class="flex gap-2 flex-wrap justify-center">
+        <button id="unitToggle" class="bg-gray-700 hover:bg-gray-800 px-3 py-1 rounded-lg transition-colors text-white">Switch to °F</button>
+        <button id="refreshBtn" class="bg-green-600 hover:bg-green-700 px-3 py-1 rounded-lg transition-colors">🔄 Refresh</button>
+        <button id="themeToggle" class="bg-yellow-400 hover:bg-yellow-500 text-black px-3 py-1 rounded-lg transition-colors">🌙 Toggle Mode</button>
       </div>
-
-      <!-- Cities Container -->
-      <div
-        id="citiesContainer"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
-      ></div>
     </div>
-
-    <!-- Professional Footer -->
-    <footer class="mt-8 py-6">
-      <div class="max-w-4xl mx-auto">
-        <div class="glass rounded-xl p-6 text-center">
-          <div class="mb-4">
-            <h2 class="text-2xl font-bold mb-1">Khalid Safi</h2>
-            <div class="name-underline"></div>
+    
+    <!-- Country Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-6">
+      <button class="country-tab active px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" data-country="all">All Countries</button>
+      <button class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" data-country="AFG">Afghanistan</button>
+      <button class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" data-country="PK">Pakistan</button>
+      <button class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" data-country="IN">India</button>
+      <button class="country-tab px-4 py-2 rounded-lg bg-white/20 hover:bg-white/30 transition-colors" data-country="SA">Saudi Arabia</button>
+    </div>
+    
+    <!-- Cities Container -->
+    <div id="citiesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+  </div>
+  
+  <!-- Professional Footer -->
+  <footer class="mt-8 py-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="glass rounded-xl p-6 text-center">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold mb-1">Khalid Safi</h2>
+          <div class="name-underline"></div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4">
+          <div class="flex items-center gap-2 text-white/90">
+            <i class="fas fa-envelope text-blue-300"></i>
+            <span>khalidareen8@gmail.com</span>
           </div>
-
-          <div
-            class="flex flex-col md:flex-row items-center justify-center gap-4 mb-4"
-          >
-            <div class="flex items-center gap-2 text-white/90">
-              <i class="fas fa-envelope text-blue-300"></i>
-              <span>khalidareen8@gmail.com</span>
-            </div>
-
-            <div class="flex items-center gap-4">
-              <a
-                href="https://www.linkedin.com/in/khalid-safi-2k02/"
-                target="_blank"
-                class="text-white/90 hover:text-blue-300 transition-colors"
-                title="LinkedIn"
-              >
-                <i class="fab fa-linkedin text-xl"></i>
-              </a>
-              <a
-                href="https://github.com/khalid-safi20"
-                target="_blank"
-                class="text-white/90 hover:text-gray-300 transition-colors"
-                title="GitHub"
-              >
-                <i class="fab fa-github text-xl"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/khalid_areen/profilecard/?igsh=MTBlNWM4cnRtcm5jYw=="
-                target="_blank"
-                class="text-white/90 hover:text-pink-400 transition-colors"
-                title="Instagram"
-              >
-                <i class="fab fa-instagram text-xl"></i>
-              </a>
-            </div>
-          </div>
-
-          <div class="text-sm text-white/70 mt-2">
-            <p>
-              Designed and developed with passion for weather data visualization
-            </p>
+          
+          <div class="flex items-center gap-4">
+            <a href="https://www.linkedin.com/in/khalid-safi-2k02/" target="_blank" 
+               class="text-white/90 hover:text-blue-300 transition-colors" title="LinkedIn">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="https://github.com/khalid-safi20" target="_blank" 
+               class="text-white/90 hover:text-gray-300 transition-colors" title="GitHub">
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="https://www.instagram.com/khalid_areen/profilecard/?igsh=MTBlNWM4cnRtcm5jYw==" target="_blank" 
+               class="text-white/90 hover:text-pink-400 transition-colors" title="Instagram">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
           </div>
         </div>
+        
+        <div class="text-sm text-white/70 mt-2">
+          <p>Designed and developed with passion for weather data visualization</p>
+        </div>
       </div>
-    </footer>
-
-    <script src="app.js"></script>
-  </body>
+    </div>
+  </footer>
+  
+  <script src="app.js"></script>
+</body>
 </html>
