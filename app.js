@@ -165,13 +165,19 @@ async function fetchWeatherData(city) {
   try {
     // Call serverless function instead of direct API
     const url = `/api/weather?city=${encodeURIComponent(apiName)}&country=${encodeURIComponent(city.country)}&units=${currentUnit}`;
+    console.log("Fetching weather from:", url);
+    
     const response = await fetch(url);
+    console.log("Weather response status:", response.status);
     
     if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Weather API error:", errorData);
       throw new Error(`City not found: ${city.name}`);
     }
     
     const data = await response.json();
+    console.log("Weather data received:", data);
     
     // Cache the data with timestamp
     weatherCache[cacheKey] = {
@@ -186,13 +192,19 @@ async function fetchWeatherData(city) {
     // Fallback: try without country code
     try {
       const url = `/api/weather?city=${encodeURIComponent(apiName)}&units=${currentUnit}`;
+      console.log("Fetching weather (fallback) from:", url);
+      
       const response = await fetch(url);
+      console.log("Weather response (fallback) status:", response.status);
       
       if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Weather API (fallback) error:", errorData);
         throw new Error(`City not found: ${city.name}`);
       }
       
       const data = await response.json();
+      console.log("Weather data (fallback) received:", data);
       
       // Cache the data with timestamp
       weatherCache[cacheKey] = {
@@ -222,13 +234,19 @@ async function fetchForecastData(city) {
   try {
     // Call serverless function instead of direct API
     const url = `/api/forecast?city=${encodeURIComponent(apiName)}&country=${encodeURIComponent(city.country)}&units=${currentUnit}`;
+    console.log("Fetching forecast from:", url);
+    
     const response = await fetch(url);
+    console.log("Forecast response status:", response.status);
     
     if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Forecast API error:", errorData);
       throw new Error(`Forecast not found for: ${city.name}`);
     }
     
     const data = await response.json();
+    console.log("Forecast data received:", data);
     
     // Cache the data with timestamp
     forecastCache[cacheKey] = {
@@ -243,13 +261,19 @@ async function fetchForecastData(city) {
     // Fallback: try without country code
     try {
       const url = `/api/forecast?city=${encodeURIComponent(apiName)}&units=${currentUnit}`;
+      console.log("Fetching forecast (fallback) from:", url);
+      
       const response = await fetch(url);
+      console.log("Forecast response (fallback) status:", response.status);
       
       if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Forecast API (fallback) error:", errorData);
         throw new Error(`Forecast not found for: ${city.name}`);
       }
       
       const data = await response.json();
+      console.log("Forecast data (fallback) received:", data);
       
       // Cache the data with timestamp
       forecastCache[cacheKey] = {
@@ -497,6 +521,8 @@ async function fetchAllCitiesWeather() {
       ? cities 
       : cities.filter(city => city.country === currentFilter);
     
+    console.log("Fetching weather for", filteredCities.length, "cities");
+    
     // Create an array to hold successful results
     const successfulResults = [];
     
@@ -511,6 +537,8 @@ async function fetchAllCitiesWeather() {
     
     // Process each batch
     for (const batch of batches) {
+      console.log("Processing batch of", batch.length, "cities");
+      
       const batchPromises = batch.map(async (city) => {
         try {
           const weatherData = await fetchWeatherData(city);
@@ -548,11 +576,31 @@ async function fetchAllCitiesWeather() {
       await new Promise(resolve => setTimeout(resolve, 200));
     }
     
+    console.log("Successfully fetched data for", successfulResults.length, "cities");
+    console.log("Failed to fetch data for", failedCities.length, "cities");
+    
     // Clear container
     citiesContainer.innerHTML = '';
     
     if (successfulResults.length === 0) {
       citiesContainer.innerHTML = `<div class="col-span-full text-center py-12 text-red-400">❌ Unable to fetch weather data for any cities</div>`;
+      
+      // Add troubleshooting information
+      const troubleshootingInfo = document.createElement("div");
+      troubleshootingInfo.className = "col-span-full mt-4 glass rounded-lg p-4 text-center";
+      troubleshootingInfo.innerHTML = `
+        <p class="text-yellow-300 mb-2">⚠️ Troubleshooting Information</p>
+        <p class="text-white/80 text-sm mb-2">Please check the following:</p>
+        <ul class="text-white/80 text-sm text-left list-disc pl-5 mb-2">
+          <li>Serverless functions are deployed correctly</li>
+          <li>Environment variables are set in Vercel</li>
+          <li>API key is valid and active</li>
+          <li>Network connection is stable</li>
+        </ul>
+        <p class="text-white/80 text-sm">Check browser console for detailed error messages.</p>
+      `;
+      citiesContainer.appendChild(troubleshootingInfo);
+      
       return;
     }
     
@@ -727,19 +775,35 @@ async function fetchDirectCityWeather(cityName) {
   try {
     // Fetch current weather using serverless function
     const weatherUrl = `/api/weather?city=${encodeURIComponent(cityName)}&units=${currentUnit}`;
-    const weatherResponse = await fetch(weatherUrl);
+    console.log("Fetching direct weather from:", weatherUrl);
     
-    if (!weatherResponse.ok) throw new Error("City not found");
+    const weatherResponse = await fetch(weatherUrl);
+    console.log("Direct weather response status:", weatherResponse.status);
+    
+    if (!weatherResponse.ok) {
+      const errorData = await weatherResponse.text();
+      console.error("Direct weather API error:", errorData);
+      throw new Error("City not found");
+    }
     
     const weatherData = await weatherResponse.json();
+    console.log("Direct weather data received:", weatherData);
     
     // Fetch forecast using serverless function
     const forecastUrl = `/api/forecast?city=${encodeURIComponent(cityName)}&units=${currentUnit}`;
-    const forecastResponse = await fetch(forecastUrl);
+    console.log("Fetching direct forecast from:", forecastUrl);
     
-    if (!forecastResponse.ok) throw new Error("Forecast not found");
+    const forecastResponse = await fetch(forecastUrl);
+    console.log("Direct forecast response status:", forecastResponse.status);
+    
+    if (!forecastResponse.ok) {
+      const errorData = await forecastResponse.text();
+      console.error("Direct forecast API error:", errorData);
+      throw new Error("Forecast not found");
+    }
     
     const forecastData = await forecastResponse.json();
+    console.log("Direct forecast data received:", forecastData);
     
     // Create and display the city card with full forecast
     citiesContainer.innerHTML = '';
@@ -747,6 +811,7 @@ async function fetchDirectCityWeather(cityName) {
     citiesContainer.appendChild(cityCard);
     
   } catch (error) {
+    console.error("Error in fetchDirectCityWeather:", error);
     citiesContainer.innerHTML = `<div class="col-span-full text-center py-12 text-red-400">❌ ${error.message}</div>`;
   }
 }
