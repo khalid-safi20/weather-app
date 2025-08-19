@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/weather.js": {
+      "runtime": "nodejs18.x"
+    },
+    "api/forecast.js": {
+      "runtime": "nodejs18.x"
+    }
+  }
+}

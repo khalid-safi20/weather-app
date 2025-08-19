@@ -1,4 +1,3 @@
-// Vercel serverless function for forecast data
 const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
@@ -34,14 +33,19 @@ module.exports = async (req, res) => {
       url += `&country=${encodeURIComponent(country)}`;
     }
     
+    console.log('Fetching forecast from:', url);
+    
     // Fetch forecast data
     const response = await fetch(url);
     
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Forecast API error:', errorText);
       return res.status(response.status).json({ error: 'Forecast data not found' });
     }
     
     const data = await response.json();
+    console.log('Forecast data received:', data);
     
     // Return the forecast data
     return res.status(200).json(data);

@@ -1,4 +1,3 @@
-// Vercel serverless function for weather data
 const fetch = require('node-fetch');
 
 module.exports = async (req, res) => {
@@ -34,14 +33,19 @@ module.exports = async (req, res) => {
       url += `&country=${encodeURIComponent(country)}`;
     }
     
+    console.log('Fetching weather from:', url);
+    
     // Fetch weather data
     const response = await fetch(url);
     
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Weather API error:', errorText);
       return res.status(response.status).json({ error: 'Weather data not found' });
     }
     
     const data = await response.json();
+    console.log('Weather data received:', data);
     
     // Return the weather data
     return res.status(200).json(data);
